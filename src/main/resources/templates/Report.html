@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>CK Car Factory</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+        integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/material.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/lang/de_DE.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/geodata/germanyLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/fonts/notosans-sc.js"></script>
+
+    <script src="https://cdn.amcharts.com/lib/version/4.10.38/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/version/4.10.38/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/version/4.10.38/themes/material.js"></script>
+    <script src="https://cdn.amcharts.com/lib/version/4.10.38/lang/de_DE.js"></script>
+
+    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+
+    <script src="//cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="//cdn.amcharts.com/lib/4/charts.js"></script>
+
+    <script type="text/javascript" th:src="@{JS/Report.js}"></script>
+    <link rel="stylesheet" href="CSS/MainPage.css">
+
+    <style>
+        body {
+            font-family: 'K2D', sans-serif;
+        }
+    </style>
+</head>
+
+<body cz-shortcut-listen="true">
+
+    <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
+        role="banner" class="navigation w-nav">
+        <div class="navigation-wrap"><a th:href="@{/CKCarFactory}" aria-current="page"
+                class="logo-link w-nav-brand w--current"><img src="/ProjectImage/Logo.png" width="108" alt=""
+                    class="logo-image"></a>
+            <div class="menu">
+                <nav role="navigation" class="navigation-items w-nav-menu"><a href="/Cars"
+                        class="navigation-item w-nav-link">Car</a><a href="/Raport"
+                        class="navigation-item w-nav-link">Report</a><a href="/Team"
+                        class="navigation-item w-nav-link">team</a>
+                    <!-- <a href="/blog" class="navigation-item w-nav-link">Blog</a><a href="/contact"
+                        class="navigation-item w-nav-link">Contact</a> -->
+                </nav>
+                <div class="menu-button w-nav-button"><img
+                        src="https://assets.website-files.com/5c6eb5400253230156de2bd6/5c6eb8fd2f27af658094fa4a_menu-icon.png"
+                        width="22" alt="" class="menu-icon"></div>
+            </div><a href="/Cars" class="button cc-contact-us w-inline-block">
+                <div>Explore</div>
+            </a>
+        </div>
+        <div class="w-nav-overlay" data-wf-ignore=""></div>
+    </div>
+
+
+
+    <div id="gearTypeChart" class="mb-4">
+    </div>
+
+
+    <div id="fuelTypeChart" class="mb-4">
+    </div>
+
+    <div id="brandChart" class="mb-4">
+
+    </div>
+    <div id="colorChart" class="mb-4">
+
+    </div>
+
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Total Number Of Cars</h2>
+            <div id="value" class="mb-4 text-center card-text" style="font-size:xx-large; color: #C65D7B;">0</div>
+
+        </div>
+    </div>
+
+
+</body>
+
+
+</html>

@@ -1,0 +1,44 @@
+label {
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+select {
+    text-align: center;
+}
+
+input {
+    text-align: center;
+}
+
+.radio-btns {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.table-button {
+    color: white;
+}
+
+#carTable {
+    font-family: 'K2D', sans-serif;
+
+}
+
+#delete-button {
+    color: red;
+}
+
+#view-button {
+    color: grey;
+}
+
+#update-button {
+    color: grey;
+}
+
+.modal {
+    font-family: 'K2D', sans-serif;
+}

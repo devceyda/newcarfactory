@@ -1,0 +1,526 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Car Factory</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D&display=swap" rel="stylesheet">
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.7.0.js" 
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>-->
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" /> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"
+        integrity="sha512-8Z5++K1rB3U+USaLKG6oO8uWWBhdYsM3hmdirnOEWp8h2B1aOikj5zBzlXs8QOrvY9OxEnD2QDkbSKKpfqcIWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+
+
+
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> -->
+    <script type="text/javascript" th:src="@{JS/Cars.js}"></script>
+    <link rel="stylesheet" href="CSS/MainPage.css">
+    <link rel="stylesheet" href="CSS/Cars.css">
+    <!-- <style>
+        table.dataTable tbody tr {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+    </style> -->
+</head>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="MdlSearchCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title text-center" id="modalHeader" value=""> Search Car</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="filter-form" action="/FilterCars" method="POST" name="filter-form">
+                    <div class="form-group form-inline">
+                        <div class="row mb-4 text-center">
+
+                            <label for="Brand" class="col-lg-4 ">Brand:</label>
+                            <select class="col-lg-8 " id="searchByBrand" name="BrandID">
+                                <option text="Please Select"></option>
+                                <option th:each="brand: ${brands}" th:text="${brand.Brand}" th:value="${brand.BrandID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Model" class="col-lg-4 ">Model:</label>
+                            <input type="text" class="col-lg-8" id="searchByModel" name="Model" value="" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Color" class="col-lg-4 ">Color:</label>
+                            <select class="col-lg-8" id="searchByColor" name="ColorID">
+                                <option text="Please Select"></option>
+                                <option th:each="color: ${colors}" th:text="${color.Color}" th:value="${color.ColorID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Price" class="col-lg-4 ">Price:</label>
+                            <input type="number" class="col-lg-8" id="searchByPrice" name="Price" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="gearType" class="col-lg-4 ">Gear Type:</label>
+                            <select class="col-lg-8" id="searchByGearType" name="GearType">
+                                <!--   <option value="0">select operator</option>-->
+                                <option text="Please Select"></option>
+                                <option th:value="O" th:text="Otomatic"></option>
+                                <option th:value="M" th:text="Manuel"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
+                            <select class="col-lg-8" id="searchByFuelType" name="FuelType">
+                                <option text="Please Select"></option>
+                                <option th:value="F" th:text="Fuel"></option>
+                                <option th:value="D" th:text="Diesel"></option>
+                                <option th:value="H" th:text="Hybrid"></option>
+                                <option th:value="E" th:text="Electric"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="ReleaseDate" class="col-lg-4">Release Date:</label>
+                            <input type="date" class="col-lg-8" id="searchByReleaseDate" name="ReleaseDate" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="searchByIsRefurbished" name="IsRefurbished" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="searchByIsRefurbished" name="IsRefurbished" />
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary close-button">Search</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="MdlAddCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="modalHeader" value="">Add Car</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="addCar-form" action="/AddCar" method="POST" name="addCar-form">
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Brand" class="col-lg-4 ">Brand:</label>
+                            <select class="col-lg-8" id="addBrand" name="BrandID">
+                                <option text="Please Select"></option>
+                                <option th:each="brand: ${brands}" th:text="${brand.Brand}" th:value="${brand.BrandID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Model" class="col-lg-4 ">Model:</label>
+                            <input type="text" class="col-lg-8" id="addModel" name="Model" value="" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Color" class="col-lg-4 ">Color:</label>
+                            <select class="col-lg-8" id="addColor" name="ColorID">
+                                <option text="Please Select"></option>
+                                <option th:each="color: ${colors}" th:text="${color.Color}" th:value="${color.ColorID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Price" class="col-lg-4 ">Price:</label>
+                            <input type="number" class="col-lg-8" id="addPrice" name="Price" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="gearType" class="col-lg-4 ">Gear Type:</label>
+                            <select class="col-lg-8" id="addGearType" name="GearType">
+                                <!--   <option value="0">select operator</option>-->
+                                <option text="Please Select"></option>
+                                <option th:value="O" th:text="Otomatic"></option>
+                                <option th:value="M" th:text="Manuel"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
+                            <select class="col-lg-8" id="addFuelType" name="FuelType">
+                                <option text="Please Select"></option>
+                                <option th:value="F" th:text="Fuel"></option>
+                                <option th:value="D" th:text="Diesel"></option>
+                                <option th:value="H" th:text="Hybrid"></option>
+                                <option th:value="E" th:text="Electric"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="ReleaseDate" class="col-lg-4">Release Date:</label>
+                            <input type="date" class="col-lg-8" id="addReleaseDate" name="ReleaseDate" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="addIsRefurbished" name="IsRefurbished" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="addIsRefurbished" name="IsRefurbished" />
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn float-start" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary " id="add-button">Add</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="MdlCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle" value=""></h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="update-form" action="/UpdateCar" method="POST" name="update-form" class="text-center">
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Brand" class="col-lg-4 ">Brand:</label>
+                            <select class="col-lg-8" id="Brand" name="BrandID" disabled="disabled">
+                                <option text="Please Select"></option>
+                                <option th:each="brand: ${brands}" th:text="${brand.Brand}" th:value="${brand.BrandID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Model" class="col-lg-4 ">Model:</label>
+                            <input type="text" class="col-lg-8" id="Model" name="Model" value="" disabled="disabled" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Color" class="col-lg-4">Color:</label>
+                            <select class="col-lg-8" id="Color" name="ColorID" disabled="disabled">
+                                <option text="Please Select"></option>
+                                <option th:each="color: ${colors}" th:text="${color.Color}" th:value="${color.ColorID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Price" class="col-lg-4 ">Price:</label>
+                            <input type="text" class="col-lg-8" id="Price" name="price" disabled="disabled" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="gearType" class="col-lg-4 ">Gear Type:</label>
+                            <select class="col-lg-8" id="GearType" name="GearType" disabled="disabled">
+                                <!--   <option value="0">select operator</option>-->
+                                <option text="Please Select"></option>
+                                <option th:value="O" th:text="Otomatic"></option>
+                                <option th:value="M" th:text="Manuel"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
+                            <select class="col-lg-8" id="FuelType" name="FuelType" disabled="disabled">
+                                <option text="Please Select"></option>
+                                <option th:value="F" th:text="Fuel"></option>
+                                <option th:value="D" th:text="Diesel"></option>
+                                <option th:value="H" th:text="Hybrid"></option>
+                                <option th:value="E" th:text="Electric"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="ReleaseDate" class="col-lg-4 ">Release Date:</label>
+                            <input type="date" class=" col-lg-8" id="ReleaseDate" name="ReleaseDate"
+                                disabled="disabled" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="IsRefurbishedYes" name="IsRefurbished"
+                                    disabled="disabled" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="IsRefurbishedNo" name="IsRefurbished"
+                                    disabled="disabled" />
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn close-button action-button" style="float:right;"
+                    data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary action-button" id="save-button">Save</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 
+    <div class="container brown highlightTextOut">
+         <nav class="navbar navbar-expand-lg  "> -->
+<!-- Brand -->
+<!-- <a http-equiv="Refresh"  th:href="@{/Cars}">CK Factory</a> -->
+<!-- Toggler/collapsibe Button -->
+<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+<!-- <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item"> -->
+<!-- <a alt="HOME" th:href="@{/Cars}">HOME</a>
+        <a alt="ARTICLES" class="btn" th:href="@{/Cars/addCar}"><i class="fa-regular fa-plus fa-xs"></i> Add
+            Car</a>
+        <a alt="ABOUT">ABOUT</a>
+        <a alt="CONTACT">CONTACT</a> -->
+<!-- </li>
+                </ul>
+            </div> 
+        </nav> -->
+<!-- </div> -->
+<!-- <span> <img th:src="@{CSS/CK.gif}"class="gif" /></span>
+    <div class="navbar-fixed-top " id="navbar">
+        <div class="navbar-header">
+             <button type="button" class="navbar-toggle navbar-default" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> -->
+<!-- <span> <img th:src="@{CSS/Logo.png}" class="logo" width="10%" style="border-radius: 50px;" /></span>  -->
+<!-- <span><a class="deneme" th:href="@{/Cars}"> Car Factory</a></span>
+        </div>
+        
+        <div class="collapse navbar-right navbar-collapse" style="margin-left: 12px;" id="myNavbar">
+            <span> <img th:src="@{CSS/Logo.png}" class="logo" width="10%" style="border-radius: 50px;" /></span>
+            <ul class="nav navbar-nav">
+                <li th:href="@{/Cars}">Home</li>
+                <li th:href="@{/Cars/addCar}">Add Car</li>
+                <li>About</li>
+                <li>Contact</li>
+
+            </ul>
+        </div>
+    </div> -->
+
+<body cz-shortcut-listen="true">
+    <div data-collapse="medium" data-animation="default" data-duration="400" data-easing="ease" data-easing2="ease"
+        role="banner" class="navigation w-nav">
+        <div class="navigation-wrap"><a th:href="@{/CKCarFactory}" aria-current="page"
+                class="logo-link w-nav-brand w--current"><img src="/ProjectImage/Logo.png" width="108" alt=""
+                    class="logo-image"></a>
+            <div class="menu">
+                <nav role="navigation" class="navigation-items w-nav-menu"><a href="/Cars"
+                        class="navigation-item w-nav-link">Car</a><a href="/Report"
+                        class="navigation-item w-nav-link">Report</a><a href="/Team"
+                        class="navigation-item w-nav-link">team</a>
+                    <!-- <a href="/blog" class="navigation-item w-nav-link">Blog</a><a href="/contact"
+                        class="navigation-item w-nav-link">Contact</a> -->
+                </nav>
+                <div class="menu-button w-nav-button"><img
+                        src="https://assets.website-files.com/5c6eb5400253230156de2bd6/5c6eb8fd2f27af658094fa4a_menu-icon.png"
+                        width="22" alt="" class="menu-icon"></div>
+            </div><a href="/Cars" class="button cc-contact-us w-inline-block">
+                <div>Explore</div>
+            </a>
+        </div>
+        <div class="w-nav-overlay" data-wf-ignore=""></div>
+    </div>
+
+    <div class="container ">
+        <input id="HddnCarID" type="hidden" />
+        <a type="button" id="addCar-button" class="btn float-start" onclick="openAddCarModal()"><i
+                class="fa-solid fa-square-plus fa-xl"></i></a>
+        <a type="button" class="btn float-end search-button" id="search-button" onclick="openSearchModal()"><i
+                class="fa-brands fa-searchengin fa-xl"></i>
+        </a>
+        <table class="table table-dark table-hover table-responsive-xl text-center table-striped table-lg"
+            id="carTable">
+            <thead class="">
+                <tr>
+                    <th class="text-center"></th>
+                    <th class="text-center" id="BrandLogo" style="text-align: center;"></th>
+                    <th class="text-center">Brand</th>
+                    <th class="text-center">Model</th>
+                    <th class="text-center">Color</th>
+                    <th class="text-center">Price</th>
+                    <th class="text-center">Release Date</th>
+                    <th class="text-center">Actions </th>
+                </tr>
+            </thead>
+            <tbody class="">
+                <!--  <tr th:each="Car: ${Cars}">
+                    <td>
+                        <a type="button" th:onclick="getCar([[${Car}]])" class="view-button"><i
+                                class="fa-solid fa-lg fa-circle-chevron-right"></i>
+                            <th:block>
+                                <script type="text/javascript" th:inline="javascript">
+                                    var Car = [[${ Car }]];
+                                    console.log(Car);
+                                // $("#brand").val(Car.brand);
+
+                                </script>
+                            </th:block> 
+
+                        </a>
+                         <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
+                            class="btn action-button view-button">
+                            View Car
+                        </a> 
+                          <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
+                            class="btn action-button view-button" 
+                           data-toggle="modal" data-target="#MdlCar">
+                            View Car
+                        </a> 
+                    </td>
+                    <td th:text="${Car.Brand}"></td>
+                    <td th:text="${Car.Model}"></td>
+                    <td th:text="${Car.Color}"></td>
+                    <td th:text="${Car.getFormattedPrice()}"></td>
+                    <td th:text="${Car.getFormattedReleaseDate()}"></td>
+                    <td>
+                        <a type="button" th:href="@{/Cars/update/{id}(id=${Car.CarID})}" class="btn action-button"
+                            style=" text-align:center; margin-right: 8px;">
+                            <i class="fa-solid fa-gear fa-sm" style=" text-align:center;"></i></a>
+
+                        <a type="button" th:href="@{/Cars/{id}(id=${Car.CarID})}"
+                            class="btn action-button delete-button" style="text-align:center;"
+                            th:data-confirm-delete="|Are you sure you want to delete ${Car.Brand} ${Car.Model}?|"
+                            onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
+                            <i class="fa-solid fa-trash-can fa-sm" style=" text-align:center;"></i></a>
+                    </td>
+
+                </tr> -->
+            </tbody>
+
+        </table>
+    </div>
+</body>
+
+</html>
