@@ -6,38 +6,35 @@ import java.sql.SQLException;
 
 public class Repository {
 
-    private String dbURL = "jdbc:sqlserver://localhost:1433;databaseName=CarFactory;encrypt=true;trustServerCertificate=true";
+    // private String dbURL =
+    // "jdbc:sqlserver://localhost:1433;databaseName=CarFactory;encrypt=true;trustServerCertificate=true";
 
-    private String username = "sa";
+    // private String username = "sa";
 
-    private String password = "Deneme*.12";
+    // private String password = "Deneme*.12";
+
+    String jdbcUrl = "jdbc:mysql://localhost:3306/carfactory";
+    String username = "root";
+    String password = "Deneme*.12";
 
     private Connection connection;
 
     public Connection getConnection() {
 
-        try {
-            connection = DriverManager.getConnection(dbURL, username, password);
-        } catch (SQLException e) {
+        // try {
+        // connection = DriverManager.getConnection(jdbcUrl, username, password);
+        // } catch (SQLException e) {
 
-            e.printStackTrace();
-        }
+        // e.printStackTrace();
+        // }
 
-        return connection;
-
-    }
-
-    public void deneme() {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/carfactory";
-        String username = "root";
-        String password = "Deneme*.12";
-
+        // return connection;
         try {
             // Load the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establish a connection
-            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+            connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             if (connection != null) {
                 System.out.println("Connected to the database!");
@@ -54,5 +51,37 @@ public class Repository {
             System.out.println("Connection to the database failed.");
             e.printStackTrace();
         }
+        return connection;
+
     }
+
+    // public void deneme() {
+    // String jdbcUrl = "jdbc:mysql://localhost:3306/carfactory";
+    // String username = "root";
+    // String password = "Deneme*.12";
+
+    // try {
+    // // Load the JDBC driver
+    // Class.forName("com.mysql.cj.jdbc.Driver");
+
+    // // Establish a connection
+    // Connection connection = DriverManager.getConnection(jdbcUrl, username,
+    // password);
+
+    // if (connection != null) {
+    // System.out.println("Connected to the database!");
+    // // Perform database operations here
+
+    // // Close the connection when done
+    // connection.close();
+    // }
+
+    // } catch (ClassNotFoundException e) {
+    // System.out.println("MySQL JDBC Driver not found.");
+    // e.printStackTrace();
+    // } catch (SQLException e) {
+    // System.out.println("Connection to the database failed.");
+    // e.printStackTrace();
+    // }
+
 }

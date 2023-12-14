@@ -50,8 +50,8 @@ public class FactoryController {
         // //model.addAttribute("Cars", carService.searchCar(car));
         // //this.car = new CarRich();
         // // System.out.println(car.getPrice());
-         Repository r = new Repository();
-        r.deneme();
+        // Repository r = new Repository();
+       // r.deneme();
         return "Cars";
     }
 
