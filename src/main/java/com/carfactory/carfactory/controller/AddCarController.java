@@ -29,15 +29,15 @@ public class AddCarController {
 
     // @GetMapping("/AddCar")
     // public String addCarForm(Model model) {
-    //     CarRich car = new CarRich();
-    //     model.addAttribute("car", car);
-    //     return "AddCar";
+    // CarRich car = new CarRich();
+    // model.addAttribute("car", car);
+    // return "AddCar";
     // }
 
     // @PostMapping("/AddCar")
     // public String addCar(@ModelAttribute("car") Car car) {
-    //     carService.addCar(car);
-    //     return "redirect:/Cars";
+    // carService.addCar(car);
+    // return "redirect:/Cars";
     // }
 
     @ModelAttribute("colors")
@@ -52,7 +52,7 @@ public class AddCarController {
 
     @RequestMapping(value = "/AddCar", method = RequestMethod.POST)
     public String addrCar(@ModelAttribute("Car") Car car) {
-       carService.addCar(car);
+        carService.addCar(car);
         return "redirect:/Cars";
     }
 }
