@@ -1,7 +1,9 @@
 package com.carfactory.carfactory.repository;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Repository {
@@ -37,11 +39,18 @@ public class Repository {
             connection = DriverManager.getConnection(jdbcUrl, username, password);
 
             if (connection != null) {
+                String query = "select * from car";
                 System.out.println("Connected to the database!");
+                // CallableStatement cb = connection.prepareCall(query);
+                // ResultSet rs = cb.executeQuery();
+                // while(rs.next()){
+
+                //     System.out.println(rs.getString(4));
+                // }
                 // Perform database operations here
 
                 // Close the connection when done
-                connection.close();
+               // connection.close();
             }
 
         } catch (ClassNotFoundException e) {

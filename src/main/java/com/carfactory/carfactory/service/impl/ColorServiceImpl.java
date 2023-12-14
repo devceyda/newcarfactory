@@ -24,7 +24,7 @@ public class ColorServiceImpl implements ColorService {
     @Override
     public List<Color> getAllColor() {
         allColors = new ArrayList<>();
-        String query = "uspGetColor";
+        String query = "{CALL uspGetColor}";
 
         try {
             Connection conn = repository.getConnection();
@@ -47,7 +47,7 @@ public class ColorServiceImpl implements ColorService {
     @Override
     public HashMap<String, Integer> getNumberOfColors() {
         numberOfColors = new HashMap<>();
-        String query = "uspGetReport";
+        String query = "{CALL uspGetReport}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);

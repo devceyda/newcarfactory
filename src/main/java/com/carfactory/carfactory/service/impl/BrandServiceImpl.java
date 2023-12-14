@@ -24,7 +24,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public List<Brand> getAllBrand() {
         allBrands = new ArrayList<>();
-        String query = "uspGetBrand";
+        String query = "{CALL uspGetBrand}";
 
         try {
             Connection conn = repository.getConnection();
@@ -47,7 +47,7 @@ public class BrandServiceImpl implements BrandService {
      @Override
     public HashMap<String, Integer> getNumberOfBrands() {
         numberOfBrands = new HashMap<>();
-        String query = "uspGetReport";
+        String query = "{CALL uspGetReport}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);

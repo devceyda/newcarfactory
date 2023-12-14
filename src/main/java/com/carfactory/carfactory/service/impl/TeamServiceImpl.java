@@ -22,7 +22,7 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Team> getTeam() {
         teamMembers = new ArrayList<>();
-        String query = "uspGetTeam";
+        String query = "{CALL uspGetTeam}";
 
         try {
             Connection conn = repository.getConnection();

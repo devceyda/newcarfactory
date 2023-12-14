@@ -28,7 +28,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarRich> getAllCar() {
         allCars = new ArrayList<>();
-        query = "uspGetCar";
+        query = "{CALL uspGetCar}";
 
         try {
             Connection conn = repository.getConnection();
@@ -66,7 +66,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car addCar(Car car) {
 
-        query = "{call uspInsertCar(?,?,?,?,?,?,?,?)}";
+        query = "{CALL uspInsertCar(?,?,?,?,?,?,?,?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
@@ -90,7 +90,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarRich getCarByID(int id) {
         rCar = new CarRich();
-        query = "{call uspGetCarByID(?)}";
+        query = "{CALL uspGetCarByID(?)}";
 
         try {
             Connection conn = repository.getConnection();
@@ -119,11 +119,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car updateCar(Car car) {
-        query = "{call uspUpdateCar(?,?,?,?,?,?,?,?,?)}";
+        query = "{CALL uspUpdateCar(?,?,?,?,?,?,?,?,?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            cb.setInt("CarID", car.getCarID());
+            cb.setInt("p_CarID", car.getCarID());
             cb.setInt("ColorID", car.getColorID());
             cb.setInt("BrandID", car.getBrandID());
             cb.setString("Model", car.getModel());
@@ -145,7 +145,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCarByID(int id) {
-        query = "{call uspDeleteCarByID(?)}";
+        query = "{CALL uspDeleteCarByID(?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
@@ -160,7 +160,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarRich> searchCar(Car car) {
         allCars = new ArrayList<>();
-        query = "{call uspSearchCar(?,?,?,?,?,?,?,?,?,?)}";
+        query = "{CALL uspSearchCar(?,?,?,?,?,?,?,?,?,?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
@@ -242,7 +242,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public HashMap<String, Integer> getReports() {
         reports = new HashMap<>();
-        query = "uspGetReport";
+        query = "{CALL uspGetReport}";
         int numberOfCar = 0;
         // int numberOfOtomatic = 0;
         // int numberOfManuel = 0;
