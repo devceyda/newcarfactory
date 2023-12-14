@@ -41,6 +41,7 @@ public class FactoryController {
 
     @GetMapping("/Cars")
     public String listCars() {
+        //Deneme
         // // model.addAttribute("Cars", carService.getAllCar());
         // // CarRich car = new CarRich();
         // // model.addAttribute("Car", car);
