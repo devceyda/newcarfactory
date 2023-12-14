@@ -16,6 +16,7 @@ import com.carfactory.carfactory.entity.Brand;
 import com.carfactory.carfactory.entity.Car;
 import com.carfactory.carfactory.entity.CarRich;
 import com.carfactory.carfactory.entity.Color;
+import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
@@ -49,6 +50,8 @@ public class FactoryController {
         // //model.addAttribute("Cars", carService.searchCar(car));
         // //this.car = new CarRich();
         // // System.out.println(car.getPrice());
+         Repository r = new Repository();
+        r.deneme();
         return "Cars";
     }
 
