@@ -70,15 +70,15 @@ public class CarServiceImpl implements CarService {
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            cb.setInt("ColorID", car.getColorID());
-            cb.setInt("BrandID", car.getBrandID());
-            cb.setString("Model", car.getModel());
-            cb.setLong("Price", car.getPrice());
-            cb.setString("GearType", car.getGearType());
-            cb.setString("FuelType", car.getFuelType());
-            cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+            cb.setInt("p_ColorID", car.getColorID());
+            cb.setInt("p_BrandID", car.getBrandID());
+            cb.setString("p_Model", car.getModel());
+            cb.setLong("p_Price", car.getPrice());
+            cb.setString("p_GearType", car.getGearType());
+            cb.setString("p_FuelType", car.getFuelType());
+            cb.setBoolean("p_IsRefurbished", car.getIsRefurbished());
             java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
-            cb.setDate("ReleaseDate", (sqlDate));
+            cb.setDate("p_ReleaseDate", (sqlDate));
             Boolean rs = cb.execute();
             System.out.println("Successfully added");
         } catch (Exception e) {
@@ -95,7 +95,7 @@ public class CarServiceImpl implements CarService {
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            cb.setInt(("CarID"), id);
+            cb.setInt(("p_CarID"), id);
             ResultSet rs = cb.executeQuery();
             rs.next();
             rCar.setCarID(rs.getInt("CarID"));
@@ -124,15 +124,15 @@ public class CarServiceImpl implements CarService {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
             cb.setInt("p_CarID", car.getCarID());
-            cb.setInt("ColorID", car.getColorID());
-            cb.setInt("BrandID", car.getBrandID());
-            cb.setString("Model", car.getModel());
-            cb.setLong("Price", car.getPrice());
-            cb.setString("GearType", car.getGearType());
-            cb.setString("FuelType", car.getFuelType());
-            cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+            cb.setInt("p_ColorID", car.getColorID());
+            cb.setInt("p_BrandID", car.getBrandID());
+            cb.setString("p_Model", car.getModel());
+            cb.setLong("p_Price", car.getPrice());
+            cb.setString("p_GearType", car.getGearType());
+            cb.setString("p_FuelType", car.getFuelType());
+            cb.setBoolean("p_IsRefurbished", car.getIsRefurbished());
             java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
-            cb.setDate("ReleaseDate", (sqlDate));
+            cb.setDate("p_ReleaseDate", (sqlDate));
             Boolean rs = cb.execute();
 
             System.out.println("Succesfully Updated");
@@ -149,7 +149,7 @@ public class CarServiceImpl implements CarService {
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            cb.setInt("CarID", id);
+            cb.setInt("p_CarID", id);
             Boolean rs = cb.execute();
             System.out.println("Succesfully Deleted");
         } catch (Exception e) {
@@ -160,53 +160,54 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarRich> searchCar(Car car) {
         allCars = new ArrayList<>();
-        query = "{CALL uspSearchCar(?,?,?,?,?,?,?,?,?,?)}";
+        query = "{CALL uspSearchCar(?,?,?,?,?,?,?,?,?,?,?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            cb.setString("CarID", null);
-            cb.setString("BrandLogo", null);
+            cb.setString("p_CarID", null);
+            cb.setString("p_BrandLogo", null);
             if (car.getColorID() == null) {
-                cb.setString("ColorID", null);
+                cb.setString("p_ColorID", null);
             } else {
-                cb.setInt("ColorID", car.getColorID());
+                cb.setInt("p_ColorID", car.getColorID());
             }
             if (car.getBrandID() == null) {
-                cb.setString("BrandID", null);
+                cb.setString("p_BrandID", null);
             } else {
-                cb.setInt("BrandID", car.getBrandID());
+                cb.setInt("p_BrandID", car.getBrandID());
             }
             if (car.getModel() == "") {
-                cb.setString("Model", null);
+                cb.setString("p_Model", null);
             } else {
-                cb.setString("Model", car.getModel());
+                cb.setString("p_Model", car.getModel());
             }
             if (car.getPrice() == null) {
-                cb.setString("Price", null);
+                cb.setString("p_Price", null);
             } else {
-                cb.setLong("Price", car.getPrice());
+                cb.setLong("p_Price", car.getPrice());
             }
             if (car.getGearType() == "") {
-                cb.setString("GearType", null);
+                cb.setString("p_GearType", null);
             } else {
-                cb.setString("GearType", car.getGearType());
+                cb.setString("p_GearType", car.getGearType());
             }
             if (car.getFuelType() == "") {
-                cb.setString("FuelType", null);
+                cb.setString("p_FuelType", null);
             } else {
-                cb.setString("FuelType", car.getFuelType());
+                cb.setString("p_FuelType", car.getFuelType());
             }
             if (car.getIsRefurbished() == null) {
-                cb.setString("IsRefurbished", null);
+                cb.setString("p_IsRefurbished", null);
             } else {
-                cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+                cb.setBoolean("p_IsRefurbished", car.getIsRefurbished());
             }
             if (car.getReleaseDate() == null) {
-                cb.setString("ReleaseDateStart", null);
+                cb.setString("p_ReleaseDateStart", null);
             } else {
                 java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
-                cb.setDate("ReleaseDateStart", (sqlDate));
+                cb.setDate("p_ReleaseDateStart", (sqlDate));
             }
+             cb.setString("p_ReleaseDateEnd", null);
 
             ResultSet rs = cb.executeQuery();
 
