@@ -70,9 +70,7 @@ public class ColorServiceImpl implements ColorService {
             ResultSet rs4 = cb.getResultSet();
 
             while (rs4.next()) {
-                // color = new Color();
-                // color.setColor(rs8.getString("Color"));
-                // color.setNumberOfColor(rs8.getString("Color"));
+             
                 numberOfColors.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
             }
 

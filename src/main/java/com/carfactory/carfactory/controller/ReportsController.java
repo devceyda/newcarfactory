@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.carfactory.carfactory.entity.BrandRich;
 import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
@@ -59,5 +60,14 @@ public class ReportsController {
 
     return brandService.getNumberOfBrands();
   }
+
+   @RequestMapping(value = "/BrandPriceReport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+  @ResponseBody
+  public HashMap<String, BrandRich> getBrandPriceData() {
+
+    return brandService.getPriceListOfBrand();
+  }
+
+
 
 }

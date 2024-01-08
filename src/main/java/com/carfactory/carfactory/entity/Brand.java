@@ -1,4 +1,5 @@
 package com.carfactory.carfactory.entity;
+
 // Title: Brand
 // Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
 // Section: 1,3
@@ -18,6 +19,10 @@ public class Brand {
     }
 
     public Brand() {
+    }
+
+    public Brand(String brand) {
+        Brand = brand;
     }
 
     public int getBrandID() {

@@ -15,6 +15,7 @@ import com.carfactory.carfactory.entity.Car;
 import com.carfactory.carfactory.entity.CarRich;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.CarService;
+
 //-----------------------------------------------------
 // Title: CarServiceImpl
 // Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
@@ -40,13 +41,10 @@ public class CarServiceImpl implements CarService {
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
-            // cb.setInt(1, 1);
+
             ResultSet rs = cb.executeQuery();
             while (rs.next()) {
                 rCar = new CarRich();
-                // car = new Car(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-                // rs.getLong(5), rs.getString(6),
-                // rs.getString(7), rs.getBoolean(8), rs.getDate(9));
 
                 rCar.setCarID(rs.getInt("CarID"));
                 rCar.setColorID(rs.getInt("ColorID"));
@@ -220,9 +218,6 @@ public class CarServiceImpl implements CarService {
 
             while (rs.next()) {
                 rCar = new CarRich();
-                // car = new Car(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
-                // rs.getLong(5), rs.getString(6),
-                // rs.getString(7), rs.getBoolean(8), rs.getDate(9));
 
                 rCar.setCarID(rs.getInt("CarID"));
                 rCar.setColorID(rs.getInt("ColorID"));
@@ -252,12 +247,6 @@ public class CarServiceImpl implements CarService {
         reports = new HashMap<>();
         query = "{CALL uspGetReport}";
         int numberOfCar = 0;
-        // int numberOfOtomatic = 0;
-        // int numberOfManuel = 0;
-        // int numberOfFuel = 0;
-        // int numberOfDiesel = 0;
-        // int numberOfHybrid = 0;
-        // int numberOfElectric = 0;
 
         try {
             Connection conn = repository.getConnection();
@@ -271,29 +260,14 @@ public class CarServiceImpl implements CarService {
             ResultSet rs2 = cb.getResultSet();
             while (rs2.next()) {
                 reports.put(rs2.getString("GearType"), rs2.getInt("NumberOfGear"));
-                // numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
+
             }
-            // raports.put("NumberOfOtomatic", numberOfOtomatic);
+
             cb.getMoreResults();
             ResultSet rs3 = cb.getResultSet();
             while (rs3.next()) {
                 reports.put(rs3.getString("FuelType"), rs3.getInt("NumberOfFuel"));
             }
-
-            // cb.getMoreResults();
-            // ResultSet rs4 = cb.getResultSet();
-            // while (rs4.next()) {
-
-            // reports.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
-
-            // }
-
-            // cb.getMoreResults();
-            // ResultSet rs5 = cb.getResultSet();
-            // while (rs5.next()) {
-            // reports.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
-
-            // }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

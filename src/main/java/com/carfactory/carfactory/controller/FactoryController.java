@@ -16,7 +16,6 @@ import com.carfactory.carfactory.entity.Brand;
 import com.carfactory.carfactory.entity.Car;
 import com.carfactory.carfactory.entity.CarRich;
 import com.carfactory.carfactory.entity.Color;
-import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
@@ -49,16 +48,7 @@ public class FactoryController {
 
     @GetMapping("/Cars")
     public String listCars() {
-        //Deneme
-        // // model.addAttribute("Cars", carService.getAllCar());
-        // // CarRich car = new CarRich();
-        // // model.addAttribute("Car", car);
-        // // CarRich car = new CarRich();
-        // //model.addAttribute("Cars", carService.searchCar(car));
-        // //this.car = new CarRich();
-        // // System.out.println(car.getPrice());
-        // Repository r = new Repository();
-       // r.deneme();
+
         return "Cars";
     }
 
@@ -113,55 +103,5 @@ public class FactoryController {
         return brandService.getAllBrand();
     }
 
-    // @GetMapping("/Cars/update/{id}")
-    // public String updateCardForm(@PathVariable Integer id, Model model) {
-    // model.addAttribute("Car", carService.getCarByID(id));
-    // return "UpdateCar";
-    // }
-
-    // @PostMapping("/Cars/{id}")
-    // public String updateCar(@PathVariable Integer id,
-    // @ModelAttribute("Car") Car car,
-    // Model model) {
-    // // int CarID =Integer.parseInt(id);
-    // // get student from database by id
-    // Car existingCar = carService.getCarByID(id);
-    // existingCar.setCarID(id);
-    // existingCar.setColorID(car.getColorID());
-    // existingCar.setBrandID(car.getBrandID());
-    // existingCar.setModel(car.getModel());
-    // existingCar.setPrice(car.getPrice());
-    // existingCar.setGearType(car.getGearType());
-    // existingCar.setFuelType(car.getFuelType());
-    // existingCar.setIsRefurbished(car.getIsRefurbished());
-    // existingCar.setReleaseDate(car.getReleaseDate());
-
-    // // save updated student object
-    // carService.updateCar(existingCar);
-    // return "redirect:/Cars";
-    // }
-
-    // @GetMapping("/Cars/{id}")
-    // public String deleteCar(@PathVariable Integer id) {
-    // carService.deleteCarByID(id);
-    // return "redirect:/Cars";
-    // }
-
-    // @PostMapping("/Cars")
-    // public void SearchCar(
-    // @RequestParam(name = "searchByBrand") Integer BrandID,
-    // @RequestParam(name = "searchByModel") String Model,
-    // @RequestParam(name = "searchByColor") Integer ColorID,
-    // @RequestParam(name = "searchByPrice") Long Price,
-    // @RequestParam(name = "searchByGearType") String GearType,
-    // @RequestParam(name = "searchByFuelType") String FuelType,
-    // @RequestParam(name = "searchByReleaseDate") Date ReleaseDate,
-    // @RequestParam(name = "searchByIsRefurbished") Boolean IsRefurbished) {
-
-    // if(BrandID != null){
-    // System.out.println("succesful");
-    // }
-
-    // }
 
 }

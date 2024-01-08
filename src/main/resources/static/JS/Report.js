@@ -193,5 +193,152 @@ $(document).ready(function () {
     });
 });
 
+// $(document).ready(function () {
+
+
+//     var brandPriceChart = am4core.create("brandPriceChart", am4charts.XYChart);
+//     var brandData = [];
+
+//     $.ajax({
+//         url: "/BrandPriceReport",
+//         method: "GET",
+//         contentType: 'application/json',
+//         dataType: 'json'
+//     }).done(function (data) {
+//         console.log(data);
+
+//         for (var brand in data) {
+//             if (data.hasOwnProperty(brand)) { // Ensure it's a direct property of the object, not from the prototype chain
+//                 var brandRich = data[brand];
+    
+//                 // Access the fields of BrandRich
+//                 var totalPrice = brandRich.totalPrice;
+//                 var maxPrice = brandRich.maxPrice;
+//                 var minPrice = brandRich.minPrice;
+//                 var averagePrice = brandRich.averagePrice;
+    
+//                 // Add data for each brand to the array
+//                 brandData.push({
+//                     "brand": brand,
+//                     "totalPrice": totalPrice,
+//                     "maxPrice": maxPrice,
+//                     "minPrice": minPrice,
+//                     "averagePrice": averagePrice
+//                 });
+//             }
+
+//         // Assign the array of data to colorChart.data
+//         brandChart.data = brandData;
+//         var categoryAxis = brandChart.xAxes.push(new am4charts.CategoryAxis());
+//         categoryAxis.dataFields.category = "brand";
+
+//         var valueAxis = brandChart.yAxes.push(new am4charts.ValueAxis());
+//         valueAxis.title.text = "Prices"; // Modify this to fit your data
+
+//         function createSeries(field, name) {
+//             var series = brandChart.series.push(new am4charts.LineSeries());
+//             series.dataFields.valueY = field;
+//             series.dataFields.categoryX = "brand";
+//             series.name = name;
+//             series.tooltipText = "{name}: [bold]{valueY}[/]";
+//             return series;
+//         }
+//         // Add series for different properties
+//         createSeries("totalPrice", "Total Price");
+//         createSeries("maxPrice", "Max Price");
+//         createSeries("minPrice", "Min Price");
+//         createSeries("averagePrice", "Average Price");
+        
+//         // Add data to the chart
+//         chart.data = brandData;
+
+//         // var series = brandChart.series.push(new am4charts.ColumnSeries());
+//         // series.dataFields.valueY = "amountOfBrand";
+//         // series.dataFields.categoryX = "brand";
+//         // series.name = "Brand";
+//         // series.columns.template.tooltipText = "Brand: {categoryX}\nAmount: {valueY}"
+//         // series.data = brandData;
+//         // brandChart.cursor = new am4charts.XYCursor();
+//         // series.columns.template.fill = am4core.color("#79155B");
+//         // series.columns.template.stroke = am4core.color("#000000");
+//         // // Set the data from colorData array
+//         // brandChart.validateData();
+//         brandChart.validateData();
+
+//     });
+// });
+
+$(document).ready(function () {
+    var brandChart = am4core.create("brandPriceChart", am4charts.XYChart);
+    var brandData = [];
+
+    $.ajax({
+        url: "/BrandPriceReport",
+        method: "GET",
+        contentType: 'application/json',
+        dataType: 'json'
+    }).done(function (data) {
+        console.log(data);
+
+        // Iterate through the keys of the HashMap
+        for (var brand in data) {
+            if (data.hasOwnProperty(brand)) {
+                var brandRich = data[brand];
+
+                // Access the fields of BrandRich
+                var totalPrice = brandRich.totalPrice;
+                var maxPrice = brandRich.maxPrice;
+                var minPrice = brandRich.minPrice;
+                var averagePrice = brandRich.averagePrice;
+
+                // Add data for each brand to the array
+                brandData.push({
+                    "brand": brand,
+                    "totalPrice": totalPrice,
+                    "maxPrice": maxPrice,
+                    "minPrice": minPrice,
+                    "averagePrice": averagePrice
+                });
+            }
+        }
+
+        // Create chart
+        var categoryAxis = brandChart.xAxes.push(new am4charts.CategoryAxis());
+        categoryAxis.dataFields.category = "brand";
+
+        var valueAxis = brandChart.yAxes.push(new am4charts.ValueAxis());
+        valueAxis.title.text = "Prices"; // Modify this to fit your data
+
+        // Create series for different properties
+        function createSeries(field, name) {
+            var series = brandChart.series.push(new am4charts.LineSeries());
+            series.dataFields.valueY = field;
+            series.dataFields.categoryX = "brand";
+            series.name = name;
+            series.tooltipText = "{name}: [bold]{valueY}[/]";
+            return series;
+        }
+
+        // Add series for different properties
+        createSeries("totalPrice", "Total Price");
+        createSeries("maxPrice", "Max Price");
+        createSeries("minPrice", "Min Price");
+        createSeries("averagePrice", "Average Price");
+
+        // Add data to the chart
+        brandChart.data = brandData;
+
+        // Uncomment the following lines if you want to configure additional settings for your chart
+        brandChart.cursor = new am4charts.XYCursor();
+        series.columns.template.fill = am4core.color("#79155B");
+        series.columns.template.stroke = am4core.color("#000000");
+
+        // Validate the data to render the chart
+        brandChart.validateData();
+    });
+});
+
+
+
 
 

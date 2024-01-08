@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.carfactory.carfactory.entity.Brand;
+import com.carfactory.carfactory.entity.BrandRich;
 //-----------------------------------------------------
 // Title: BrandService
 // Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
@@ -16,6 +17,8 @@ public interface BrandService {
     List<Brand> getAllBrand();
 
     HashMap<String, Integer> getNumberOfBrands();
+    HashMap<String, BrandRich> getPriceListOfBrand();
+
 
 }
 

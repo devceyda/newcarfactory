@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.carfactory.carfactory.entity.Brand;
+import com.carfactory.carfactory.entity.BrandRich;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.BrandService;
 
@@ -31,6 +32,7 @@ public class BrandServiceImpl implements BrandService {
     private List<Brand> allBrands;
     private Brand brand;
     private HashMap<String, Integer> numberOfBrands;
+    private HashMap<String, BrandRich> brandPrices;
     Repository repository = new Repository();
 
     @Override
@@ -77,10 +79,6 @@ public class BrandServiceImpl implements BrandService {
             cb.getMoreResults();
             ResultSet rs5 = cb.getResultSet();
             while (rs5.next()) {
-                // brand = new Brand();
-                // brand.setBrand(rs9.getString("Brand"));
-                // brand.setNumberOfBrand(rs9.getInt("NumberOfBrand"));
-                // numberOfBrands.add(brand);
                 numberOfBrands.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
             }
 
@@ -88,6 +86,30 @@ public class BrandServiceImpl implements BrandService {
             System.out.println(e.getMessage());
         }
         return numberOfBrands;
+    }
+
+    @Override
+    public HashMap<String, BrandRich> getPriceListOfBrand() {
+        brandPrices = new HashMap<>();
+        String query = "{CALL uspGetPriceListOfBrand}";
+        BrandRich brandR;
+
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            ResultSet rs = cb.executeQuery();
+
+            while (rs.next()) {
+                brandR = new BrandRich(rs.getString("Brand"), rs.getDouble("totalPrice"), rs.getDouble("maxPrice"),
+                        rs.getDouble("minPrice"), rs.getDouble("averagePrice"));
+                    
+                brandPrices.put(brandR.getBrand(), brandR);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return brandPrices;
     }
 
 }

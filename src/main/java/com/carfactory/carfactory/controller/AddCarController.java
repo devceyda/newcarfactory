@@ -37,19 +37,6 @@ public class AddCarController {
         this.carService = carService;
     }
 
-    // @GetMapping("/AddCar")
-    // public String addCarForm(Model model) {
-    // CarRich car = new CarRich();
-    // model.addAttribute("car", car);
-    // return "AddCar";
-    // }
-
-    // @PostMapping("/AddCar")
-    // public String addCar(@ModelAttribute("car") Car car) {
-    // carService.addCar(car);
-    // return "redirect:/Cars";
-    // }
-
     @ModelAttribute("colors")
     public List<Color> getColors() {
         return colorService.getAllColor();
