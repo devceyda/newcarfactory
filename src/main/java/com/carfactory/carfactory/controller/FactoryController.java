@@ -21,9 +21,16 @@ import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
 
-
+//-----------------------------------------------------
+// Title: FactoryController
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary:The FactoryController class is a Spring MVC controller handling various endpoints related to car operations, such as listing, filtering, deleting, and updating cars.
+// It uses the @RequestMapping annotation to map HTTP requests to specific methods.
+//The @ResponseBody annotation is used to indicate that the return value of the getCarsData method should be serialized directly to the body of the HTTP response.
+//----------------------------------------------------
 @Controller
-
 public class FactoryController {
 
     private BrandService brandService;

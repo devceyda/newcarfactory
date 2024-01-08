@@ -1,3 +1,35 @@
+//-----------------------------------------------------
+// Title: JS Cars
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary:Modal Functions:
+
+//openSearchModal(): Opens a Bootstrap modal with the ID 'MdlSearchCar' for searching cars.
+//openAddCarModal(): Opens a Bootstrap modal with the ID 'MdlAddCar' for adding a new car.
+//AJAX Form Submissions:
+
+//Two AJAX form submissions are present, one for filtering cars (#filter-form) and the other for adding a new car (#addCar-form).
+//Code prevents multiple form submissions while an AJAX request is in progress.
+//Initializing DataTable:
+
+//Initializes DataTable (#carTable) to display car data.
+//Fetches car data from the "/CarsData" endpoint using AJAX.
+//Defines columns, creates images, and formats columns (e.g., date and price).
+//Car Update Function:
+
+//UpdateCar(car): Fills and displays a modal to update car details. Uses Bootstrap modal and dynamically sets form input values based on the car object.
+//Sends an AJAX request to update car details when the form is submitted.
+//Fetching Car Details Function:
+
+//GetCarDetail(car): Displays car details in a modal without allowing updating. Sets the modal title and disables form fields.
+//Car Deletion Function:
+
+//deleteCarByID(data): Prompts the user to confirm car deletion and sends an AJAX request to the "/CarsDelete" endpoint.
+//Document Ready Function:
+
+//Initiates various functionalities when the document is ready, including DataTable setup and an AJAX request for car data.
+//----------------------------------------------------
 function openSearchModal() {
 
     var CarModal = new bootstrap.Modal(document.getElementById('MdlSearchCar'), {

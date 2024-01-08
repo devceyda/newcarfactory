@@ -1,5 +1,12 @@
 package com.carfactory.carfactory.service.impl;
-
+//-----------------------------------------------------
+// Title: TeamServicrImpl
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: The database connection is obtained using the repository.getConnection() method from the Repository class.
+//The code uses CallableStatement to execute stored procedures and ResultSet to retrieve the results.
+//----------------------------------------------------
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;

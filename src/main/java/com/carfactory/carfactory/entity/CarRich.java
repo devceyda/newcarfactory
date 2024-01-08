@@ -1,7 +1,13 @@
 package com.carfactory.carfactory.entity;
 
 import java.util.Date;
-
+//-----------------------------------------------------
+// Title: Car Rich
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: The class provides a constructor with parameters to initialize both the properties of the base Car class and the additional properties introduced in CarRich.
+//----------------------------------------------------
 public class CarRich extends Car {
 
     private String Color;

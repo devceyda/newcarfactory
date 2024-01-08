@@ -14,6 +14,16 @@ import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
 
+//-----------------------------------------------------
+// Title: AddCarController
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: It uses the @ModelAttribute annotation to provide lists of colors and brands to the view.
+// These lists are obtained by invoking the getAllColor() and getAllBrand() methods from ColorService and BrandService respectively.
+//The addrCar method takes a Car object as a model attribute, which is populated with form data from the view. It then invokes the addCar method from CarService to add the new car.
+//-----------------------------------------------------
+
 @Controller
 public class AddCarController {
 

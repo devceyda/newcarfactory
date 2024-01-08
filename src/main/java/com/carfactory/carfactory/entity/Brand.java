@@ -1,5 +1,10 @@
 package com.carfactory.carfactory.entity;
-
+// Title: Brand
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: The Brand class has three private fields: BrandID (an integer representing the brand's ID), Brand (a string representing the brand's name), and BrandLogo (a string representing the URL or path to the brand's logo).
+//----------------------------------------------------
 public class Brand {
 
     private int BrandID;

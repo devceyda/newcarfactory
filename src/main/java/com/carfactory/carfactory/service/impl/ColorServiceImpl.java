@@ -13,8 +13,15 @@ import org.springframework.stereotype.Service;
 import com.carfactory.carfactory.entity.Color;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.ColorService;
-
-@Service
+//-----------------------------------------------------
+// Title: CarServiceImpl
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: The code uses CallableStatement to execute stored procedures and ResultSet to retrieve the results.
+//The results are stored in a HashMap<String, Integer> named numberOfColors, where the color names are keys, and the corresponding numbers are values.
+//----------------------------------------------------
+@Service//Spring service
 public class ColorServiceImpl implements ColorService {
     private List<Color> allColors;
     private Color color;

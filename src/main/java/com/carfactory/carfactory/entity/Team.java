@@ -1,5 +1,11 @@
 package com.carfactory.carfactory.entity;
-
+//-----------------------------------------------------
+// Title: Team class
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: For applyin datas from team member with getter setter methods
+//----------------------------------------------------
 public class Team {
 
     private String Name;

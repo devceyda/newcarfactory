@@ -7,8 +7,16 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 import java.util.Locale;
-
-
+//-----------------------------------------------------
+// Title: Car
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary:  different attributes of a car, such as CarID, ColorID, BrandID, Model, Price, GearType, FuelType, IsRefurbished, and ReleaseDate.
+//Additionally, there are two methods, getFormattedPrice and getFormattedReleaseDate, that provide formatted representations of the Price and ReleaseDate fields, respectively.
+//The getFormattedPrice method uses the DecimalFormat class to format the price with a grouping separator and appends the currency symbol
+//The getFormattedReleaseDate method uses the SimpleDateFormat class to format the release date according to the specified pattern "dd.MM.yyyy".
+//----------------------------------------------------
 public class Car {
 
     private Integer CarID;

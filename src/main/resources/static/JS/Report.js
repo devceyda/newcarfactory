@@ -1,3 +1,10 @@
+//-----------------------------------------------------
+// Title: Report.js
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary:The JavaScript file primarily focuses on fetching data through AJAX requests and visualizing it using am4charts for different aspects of the car data, including gear types, fuel types, colors, and brands. It serves the purpose of presenting a comprehensive overview of car-related statistics in a visual and interactive manner.
+//----------------------------------------------------
 $(document).ready(function () {
     var gearChart = am4core.create("gearTypeChart", am4charts.PieChart);
     var fuelChart = am4core.create("fuelTypeChart", am4charts.PieChart);

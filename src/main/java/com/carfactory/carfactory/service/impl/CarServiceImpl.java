@@ -15,7 +15,14 @@ import com.carfactory.carfactory.entity.Car;
 import com.carfactory.carfactory.entity.CarRich;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.CarService;
-
+//-----------------------------------------------------
+// Title: CarServiceImpl
+// Author: Ceyda Kuşçuoğlu, Berke Beyazbenli, Selin Sivis, Aybüke Ersal
+// Section: 1,3
+// Term Project
+// Summary: The code uses CallableStatement to execute stored procedures and ResultSet to retrieve the results.
+//Each method performs a specific operation related to car management, such as retrieving all cars, adding a car, updating a car, etc.
+//----------------------------------------------------
 @Service
 public class CarServiceImpl implements CarService {
 
@@ -207,7 +214,7 @@ public class CarServiceImpl implements CarService {
                 java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
                 cb.setDate("p_ReleaseDateStart", (sqlDate));
             }
-             cb.setString("p_ReleaseDateEnd", null);
+            cb.setString("p_ReleaseDateEnd", null);
 
             ResultSet rs = cb.executeQuery();
 
@@ -264,30 +271,29 @@ public class CarServiceImpl implements CarService {
             ResultSet rs2 = cb.getResultSet();
             while (rs2.next()) {
                 reports.put(rs2.getString("GearType"), rs2.getInt("NumberOfGear"));
-               // numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
+                // numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
             }
-            //raports.put("NumberOfOtomatic", numberOfOtomatic);
+            // raports.put("NumberOfOtomatic", numberOfOtomatic);
             cb.getMoreResults();
             ResultSet rs3 = cb.getResultSet();
             while (rs3.next()) {
-               reports.put(rs3.getString("FuelType"), rs3.getInt("NumberOfFuel"));
+                reports.put(rs3.getString("FuelType"), rs3.getInt("NumberOfFuel"));
             }
-           
+
             // cb.getMoreResults();
             // ResultSet rs4 = cb.getResultSet();
             // while (rs4.next()) {
 
-            //         reports.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
-                
+            // reports.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
+
             // }
-           
+
             // cb.getMoreResults();
             // ResultSet rs5 = cb.getResultSet();
             // while (rs5.next()) {
-            //         reports.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
-                
+            // reports.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
+
             // }
-           
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
